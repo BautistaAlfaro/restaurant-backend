@@ -2,6 +2,10 @@ import { describe, test, expect, vi, beforeEach } from 'vitest'
 import jwt from 'jsonwebtoken'
 import { authenticateToken } from '../middlewares/authMiddleware'
 import { roleMiddleware } from '../middlewares/authMiddleware'
+import { config } from 'dotenv';
+import { generateTestToken } from './test-utils';
+
+config();
 
 // Este archivo testea el middleware de autenticación y autorización.
 // Verifica que:

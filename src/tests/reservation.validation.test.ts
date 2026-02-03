@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { config } from 'dotenv'
 
+import { generateTestToken } from './test-utils';
+
 config()
-const token = process.env.TOKEN
+const token = generateTestToken({ id: 'test-user', userType: 'User' });
 
 describe('POST /api/reservations - Validación', () => {
   it('debería fallar si no se envía el user', async () => {
@@ -10,7 +12,7 @@ describe('POST /api/reservations - Validación', () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         datetime: '2025-06-12T19:00:00Z',
@@ -18,7 +20,7 @@ describe('POST /api/reservations - Validación', () => {
       })
     })
 
-    expect(response.status).toBe(400) 
+    expect(response.status).toBe(400)
     const body = await response.json()
     expect(body).toHaveProperty('message')
     expect(body.message).toMatch(/user/i)

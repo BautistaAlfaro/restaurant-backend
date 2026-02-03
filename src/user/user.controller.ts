@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { orm } from "../shared/db/orm.js";
 import { User } from "./user.entity.js";
 import { validateUser, validateLogin } from "./user.schema.js";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 import { AuthenticatedRequest } from "../middlewares/authMiddleware.js";
 
@@ -180,4 +180,4 @@ async function remove(req: AuthenticatedRequest, res: Response) {
   }
 }
 
-export { add, findAll, findOne, update, remove, createInitialCart ,login}
+export { add, findAll, findOne, update, remove, createInitialCart, login }
